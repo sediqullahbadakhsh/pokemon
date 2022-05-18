@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PokemonList from "./PokemonList";
 
 class App extends Component {
   constructor() {
@@ -15,7 +16,7 @@ class App extends Component {
   onButtonClick(event) {
     event.preventDefault();
     // console.log(this.state.type + "this button clicked");
-    const API_URL = "https://pokeapi.co/api/v2/type/3/";
+    const API_URL = `https://pokeapi.co/api/v2/type/${this.state.type}/`;
     fetch(API_URL)
       .then((result) => {
         return result.json();
@@ -27,7 +28,7 @@ class App extends Component {
       .catch((error) => console.log(error));
   }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className="container app-container">
         <div>
@@ -49,6 +50,7 @@ class App extends Component {
             </button>
           </form>
         </div>
+        <PokemonList pokemonResult={this.state.pokemonList} />
       </div>
     );
   }
